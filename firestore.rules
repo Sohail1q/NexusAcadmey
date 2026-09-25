@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Students collection
+    match /students/{studentId} {
+      allow read: if true;
+      allow create, update: if isValidId(studentId) 
+        && request.resource.data.id is string
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 128;
+      allow delete: if isValidId(studentId);
+    }
+
+    // Classes collection
+    match /classes/{classId} {
+      allow read: if true;
+      allow create, update: if isValidId(classId)
+        && request.resource.data.className is string
+        && request.resource.data.className.size() <= 64;
+      allow delete: if isValidId(classId);
+    }
+
+    // Academy sync state document (chunked manifests, chunks, pings)
+    match /academy_state/{docId} {
+      allow read: if true;
+      allow create, update: if isValidId(docId);
+      allow delete: if isValidId(docId);
+    }
+  }
+}

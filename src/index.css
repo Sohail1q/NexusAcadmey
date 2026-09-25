@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  --navy-dark: #0f172a;
+  --burgundy: #800020;
+  --blue-accent: #2563eb;
+  --blue-hover: #1d4ed8;
+  --bg-gray: #f8fafc;
+  --card-border: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --green-bg: #dcfce7;
+  --green-text: #15803d;
+  --red-bg: #fee2e2;
+  --red-text: #b91c1c;
+  --yellow-bg: #fef3c7;
+  --yellow-text: #b45309;
+  --purple-bg: #f3e8ff;
+  --purple-icon: #9333ea;
+}
+
+body {
+  background-color: var(--bg-gray);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 4mm 6mm;
+}
+
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide UI elements marked as no-print */
+  .no-print, header, nav, footer, #app-navbar {
+    display: none !important;
+  }
+
+  /* Printable receipt container takes full page */
+  #printableReceipt {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: 200mm !important;
+    min-height: 282mm !important;
+    max-height: 288mm !important;
+    margin: 0 auto !important;
+    padding: 4mm 6mm !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-sizing: border-box !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

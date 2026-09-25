@@ -1,0 +1,6 @@
+{
+  "name": "Nexus Academy Management App",
+  "description": "Dynamic cloud-synced academy management system with real-time CRUD operations, student registration, admission, fee receipts, attendance tracking, test marks, and cloud database persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

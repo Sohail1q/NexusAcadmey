@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // AI Studio preview environment: HMR is disabled, ignore transient [vite] WebSocket messages
+      (function() {
+        var origError = console.error;
+        console.error = function() {
+          var msg = arguments[0];
+          if (typeof msg === 'string' && (msg.indexOf('[vite]') !== -1 || msg.indexOf('websocket') !== -1 || msg.indexOf('WebSocket') !== -1)) {
+            return;
+          }
+          return origError.apply(console, arguments);
+        };
+        window.addEventListener('unhandledrejection', function(e) {
+          var reason = e && e.reason;
+          var msg = reason && (reason.message || String(reason));
+          if (typeof msg === 'string' && (msg.indexOf('[vite]') !== -1 || msg.indexOf('WebSocket') !== -1)) {
+            e.preventDefault();
+          }
+        });
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Academy Management App</title>
+    <meta name="description" content="Dynamic cloud-synced academy management system with real-time CRUD operations, student registration, admission, fee receipts, attendance tracking, test marks, and cloud database persistence." />
+    <meta property="og:title" content="Nexus Academy Management App" />
+    <meta property="og:description" content="Dynamic cloud-synced academy management system with real-time CRUD operations, student registration, admission, fee receipts, attendance tracking, test marks, and cloud database persistence." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="NexusAcademy" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/nexus-logo.svg" />
+    <link rel="alternate icon" type="image/png" href="/nexus-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

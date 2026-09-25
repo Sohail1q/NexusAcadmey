@@ -1,0 +1,135 @@
+{
+  "entities": {
+    "student": {
+      "title": "Student",
+      "description": "Academy enrolled student record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique student admission identifier",
+          "maxLength": 64
+        },
+        "name": {
+          "type": "string",
+          "description": "Full legal name of the student",
+          "maxLength": 128
+        },
+        "fatherName": {
+          "type": "string",
+          "description": "Father or legal guardian name",
+          "maxLength": 128
+        },
+        "biometricId": {
+          "type": "string",
+          "description": "Biometric registration/fingerprint token ID",
+          "maxLength": 64
+        },
+        "guardianNumber": {
+          "type": "string",
+          "description": "Contact telephone number",
+          "maxLength": 32
+        },
+        "className": {
+          "type": "string",
+          "description": "Assigned class or batch",
+          "maxLength": 64
+        },
+        "monthlyFee": {
+          "type": "number",
+          "description": "Monthly tuition fee amount"
+        },
+        "monthlyDiscount": {
+          "type": "number",
+          "description": "Monthly fee discount amount"
+        },
+        "admissionFee": {
+          "type": "number",
+          "description": "Admission enrollment fee amount"
+        },
+        "admissionDiscount": {
+          "type": "number",
+          "description": "Admission fee discount amount"
+        },
+        "dues": {
+          "type": "number",
+          "description": "Current outstanding balance dues"
+        },
+        "totalPaid": {
+          "type": "number",
+          "description": "Total amount paid to date"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update"
+        }
+      },
+      "required": ["id", "name", "fatherName"]
+    },
+    "academyClass": {
+      "title": "AcademyClass",
+      "description": "Class or batch information",
+      "type": "object",
+      "properties": {
+        "className": {
+          "type": "string",
+          "description": "Name of the class",
+          "maxLength": 64
+        },
+        "teacher": {
+          "type": "string",
+          "description": "Assigned instructor",
+          "maxLength": 128
+        },
+        "category": {
+          "type": "string",
+          "description": "Academic category",
+          "maxLength": 64
+        },
+        "monthlyFee": {
+          "type": "number",
+          "description": "Tuition fee"
+        },
+        "admissionFee": {
+          "type": "number",
+          "description": "Registration fee"
+        }
+      },
+      "required": ["className"]
+    },
+    "academySyncState": {
+      "title": "AcademySyncState",
+      "description": "Synchronized full academy state document",
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "number",
+          "description": "Schema version number"
+        },
+        "savedAt": {
+          "type": "string",
+          "description": "ISO timestamp of save"
+        },
+        "dataJson": {
+          "type": "string",
+          "description": "Serialized academy data bundle"
+        }
+      },
+      "required": ["savedAt", "dataJson"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": "student",
+      "description": "Collection of student records"
+    },
+    "/classes/{classId}": {
+      "schema": "academyClass",
+      "description": "Collection of academy course classes"
+    },
+    "/academy_state/{docId}": {
+      "schema": "academySyncState",
+      "description": "Global synchronized academy state document"
+    }
+  }
+}
